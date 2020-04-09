@@ -6,12 +6,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TableRow;
+import android.widget.TableLayout;
 import android.database.Cursor;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper db;
     TextView text;
-    TextView hist;
+    TableLayout hist;
     EditText time;
     EditText usd;
     EditText item;
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         item = findViewById(R.id.item);
         add = findViewById(R.id.add1);
         sub = findViewById(R.id.sub);
-        hist = findViewById(R.id.historyT);
+        hist = findViewById(R.id.tab);
 
 
         Click();
@@ -76,26 +78,38 @@ public class MainActivity extends AppCompatActivity {
 
     public void History(){
         Double total = 0.0;
-        StringBuffer str = new StringBuffer();
         Cursor data = db.getData();
+
+        if (hist.getChildCount() > 0) {
+            hist.removeAllViews();
+
+        }
 
         while(data.moveToNext()){
             double dollar = Double.parseDouble(data.getString(2));
-            if (dollar < 0) {
+            total += dollar;
+            TableRow r = new TableRow(this);
+            TableRow.LayoutParams cl = new TableRow.LayoutParams();
+            cl.weight = 1;
 
-                str.append("Spent $" + (-1 * dollar) + " on " + data.getString(1)
-                        + " for " + data.getString(3) + "\n");
+            TextView D = new TextView(this);
+            D.setLayoutParams(cl);
+            D.setText(data.getString(1));
+            r.addView(D);
 
-                total += dollar;
-            }
-            else {
-                str.append("Added $" + dollar + " on " + data.getString(1)
-                        + " for " + data.getString(3) + "\n");
+            TextView amount = new TextView(this);
+            amount.setLayoutParams(cl);
+            amount.setText(data.getString(2));
+            r.addView(amount);
 
-                total += dollar;
-            }
+            TextView Cg = new TextView(this);
+            Cg.setLayoutParams(cl);
+            Cg.setText(data.getString(3));
+            r.addView(Cg);
+
+            hist.addView(r, new TableLayout.LayoutParams());
+
         }
         MainActivity.this.text.setText("Current Balance: $" + Double.toString(total));
-        MainActivity.this.hist.setText(str);
     }
 }

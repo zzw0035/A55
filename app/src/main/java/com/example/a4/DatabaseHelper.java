@@ -14,7 +14,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int a, int b){
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS asd");
         onCreate(sqLiteDatabase);
     }
 

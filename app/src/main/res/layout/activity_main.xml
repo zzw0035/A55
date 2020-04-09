@@ -26,13 +26,13 @@
             android:inputType="textMultiLine" />
         <EditText
             android:id="@+id/dollar"
-            android:hint="$"
+            android:hint="Amount"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:inputType="textMultiLine" />
         <EditText
             android:id="@+id/item"
-            android:hint="Item"
+            android:hint="Category"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:inputType="textMultiLine" />
@@ -51,12 +51,48 @@
     <TextView
         android:id="@+id/history"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="History" />
+        android:text="Transactions History" />
 
-    <TextView
-        android:id="@+id/historyT"
+
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <TableRow
+            android:background="#6DB0EF"
+            >
+
+            <TextView
+
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:textColor="#FFF"
+                android:text="Date" />
+            <TextView
+
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:textColor="#FFF"
+                android:text="Amount" />
+            <TextView
+
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:textColor="#FFF"
+                android:text="Category" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+    </TableLayout>
+
+
+
 </LinearLayout>
